@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
-import "./person.css"; // Importa il file CSS
+import "./person.css"; 
 import { getAllPerson } from "../../api";
-import { FaUser, FaBirthdayCake, FaIdCard } from "react-icons/fa"; // Importa icone
+import { FaUser, FaBirthdayCake, FaIdCard } from "react-icons/fa"; 
+import AddPersons from "./addPersons"
 
 const Persons = () => {
   const [persons, setPersons] = useState<any[]>([]);
 
-  useEffect(() => {
-    getAllPerson().then((data) => {
+  const fetchPersons = async () =>{
+    try{
+      const data = await getAllPerson();
       setPersons(data);
-    });
+    }catch(error){
+      console.error("Errore durante il caricamento delle persone:", error);
+    }
+  }
+
+  useEffect(() => {
+      fetchPersons();
   }, []);
 
   return (
     <div>
+      <AddPersons onAdd={fetchPersons}/>
       <ul className="person-list">
         {persons.map((person) => (
           <li key={person.id} className="person-item">

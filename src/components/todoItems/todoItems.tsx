@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { getAllTodoItems } from "../../api";
 import "./todoItems.css";
+import AddTodoItem from "./addTodoItems";
 
 const TodoItems = () => {
   const [todoItems, setTodoItems] = useState<any[]>([]);
 
-  useEffect(() => {
-    getAllTodoItems().then((data) => {
+  //Richiamo il la GetAll e aggiorno lo state di todoItems con i dati ricevuti
+  const fetchTodoItems = async () => {
+    try {
+      const data = await getAllTodoItems();
       setTodoItems(data);
-    });
+    } catch (error) {
+      console.error("Errore durante il caricamento dei TodoItems:", error);
+    }
+  };
+
+  //Richiamo la funzione fetchTodoItems al caricamento del componente
+  useEffect(() => {
+    fetchTodoItems();
   }, []);
+
 
   return (
     <div>
+      {/* Aggiungo il form e ricarico la lista dei TodoItems */}
+         <AddTodoItem onAdd={fetchTodoItems} /> 
       <ul className="todo-list">
         {todoItems.map((item) => (
           <li key={item.id} className="todo-item">
