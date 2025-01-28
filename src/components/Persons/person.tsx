@@ -21,7 +21,7 @@ const Persons = () => {
               <FaUser /> {person.name} {person.surname}
             </h3>
             <p className="birth-date">
-              <FaBirthdayCake /> Data di nascita:{" "}
+              <FaBirthdayCake /> Data di nascita: 
               {new Date(person.birthDate).toLocaleDateString()}
             </p>
             <p className="tin">

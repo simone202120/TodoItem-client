@@ -17,7 +17,7 @@ const TodoItems = () => {
         {todoItems.map((item) => (
           <li key={item.id} className="todo-item">
             <h3>{item.title}</h3>
-            <p>{item.description}</p>
+            <p>Descrizione: {item.description}</p>
             <p className="date">
               Inizio: {new Date(item.startDate).toLocaleDateString()}
             </p>
@@ -29,7 +29,7 @@ const TodoItems = () => {
               Assegnato: {item.personId ? "Si" : "No"}
             </p>
             <p className={item.isComplete ? "completed" : "not-completed"}>
-              Completato: {item.isComplete ? "Sì" : "No"}
+              Completato: {item.isComplete ? "✅" : "❌"}
             </p>
           </li>
         ))}
