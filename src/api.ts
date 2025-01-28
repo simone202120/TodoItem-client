@@ -6,6 +6,7 @@ const API_BASE_URL = 'https://localhost:44311';
 const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {
+        'Abp.TenantId' : 1,
         'Content-Type': 'application/json',
     },
 });
