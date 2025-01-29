@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllTodoItems } from "../../api";
 import "./todoItems.css";
-import AddTodoItem from "./addTodoItems";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 const TodoItems = () => {
   const [todoItems, setTodoItems] = useState<any[]>([]);
@@ -23,9 +23,12 @@ const TodoItems = () => {
 
 
   return (
-    <div>
-      {/* Aggiungo il form e ricarico la lista dei TodoItems */}
-         <AddTodoItem onAdd={fetchTodoItems} /> 
+    <div className="todoContainer">
+      <div className="ButtonContainer">
+      <Link to="addTodo">
+      <button className="add-button">Aggiungi Todo</button>
+      </Link>
+      </div>
       <ul className="todo-list">
         {todoItems.map((item) => (
           <li key={item.id} className="todo-item">

@@ -1,6 +1,9 @@
 .todo-list {
     list-style: none;
     padding: 0;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
   }
   
   .todo-item {
@@ -8,14 +11,16 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 16px;
-    margin-bottom: 12px;
+    margin: 12px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    text-align: left;
+    width: 20%;
   }
   
   .todo-item h3 {
-    margin: 0 0 8px;
-    color: #333;
+    margin: 8px;
+    color: #000105;
+    text-align: center;
   }
   
   .todo-item p {
@@ -81,4 +86,42 @@
   
   .add-todo-form button:hover {
     background-color: #218838;
+  }
+
+  .add-button{
+  background: linear-gradient(135deg, #e2be4a, #ffd000);
+  color: rgb(161, 90, 7);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  justify-content: center;
+
+  }
+
+  .add-button:hover{
+    background: linear-gradient(135deg, #e2be4a, #ffd000);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  }
+  .add-button:active {
+    transform: scale(0.95);
+  }
+
+  .todoContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .ButtonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }

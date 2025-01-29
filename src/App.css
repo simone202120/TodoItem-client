@@ -1,16 +1,52 @@
 /* App.css */
 .container {
-  display: flex; /* Abilita Flexbox */
+  display: flex; 
   justify-content: space-between; /* Distribuisce lo spazio tra i due componenti */
   gap: 20px; /* Aggiunge uno spazio tra i due componenti */
   padding: 20px; /* Aggiunge un po' di padding */
 }
 
 .Items, .Persons {
-  flex: 1; /* Fa sì che entrambi i componenti occupino lo stesso spazio */
+  /*flex: 1;  Fa sì che entrambi i componenti occupino lo stesso spazio */
   background-color: #f9f9f9; /* Colore di sfondo */
   border: 1px solid #ddd; /* Bordo */
   border-radius: 8px; /* Bordi arrotondati */
   padding: 16px; /* Spaziatura interna */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra */
+}
+
+.home {
+  text-align: center;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.buttons button {
+  background: linear-gradient(135deg, #4A90E2, #007AFF);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  justify-content: center;
+  margin: 2%;
+}
+
+.buttons button:hover{
+  background: linear-gradient(135deg, #007AFF, #005BBB);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+  padding: 20px;
 }

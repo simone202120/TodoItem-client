@@ -22,7 +22,7 @@ const Persons = () => {
 
   return (
     <div>
-      <AddPersons onAdd={fetchPersons}/>
+      {/* <AddPersons onAdd={fetchPersons}/> */}
       <ul className="person-list">
         {persons.map((person) => (
           <li key={person.id} className="person-item">
