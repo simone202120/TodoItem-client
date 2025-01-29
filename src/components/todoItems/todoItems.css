@@ -4,17 +4,18 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    align-items: center;
   }
   
   .todo-item {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #fffafa00;
+    border: 3px solid #ecbf2a;
     border-radius: 8px;
     padding: 16px;
     margin: 12px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: left;
-    width: 20%;
+    width: 29%;
   }
   
   .todo-item h3 {
@@ -96,7 +97,7 @@
   text-align: center;
   padding: 12px 24px;
   border: none;
-  border-radius: 12px;
+  border-radius: 38px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -121,7 +122,41 @@
 
   .ButtonContainer{
     display: flex;
-    justify-content: center;
+    justify-content:space-between ;
     align-items: center;
     width: 100%;
   }
+
+  .Title{
+    width: 90%;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size:200%;
+    color: #0e0d0d;
+  }
+
+  .deleteContainer{
+    text-align: right;
+  }
+
+  .delete{
+    background: linear-gradient(135deg, #a70505, #ee2a2a);
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px 12px;
+  border: none;
+  border-radius: 38px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  justify-content: center;
+  
+  }
+
+  .delete:hover{
+    background: linear-gradient(135deg, #ac0b0b, #bd1818);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+}

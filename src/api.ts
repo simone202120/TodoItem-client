@@ -69,3 +69,18 @@ export const getAllTodoItems = async () => {
       throw error; 
     }
   }
+
+  export const deleteTodoItem = async (itemid:number) =>{
+    try{
+      const response = await api.delete(`/api/services/app/TodoItem/Delete?id=${itemid}`)
+    }catch(error){
+      console.error('Errore durante la richiesta: ',error );
+    }
+  }
+  export const deletePersons = async (personid:number) =>{
+    try{
+      const response = await api.delete(`/api/services/app/Person/Delete?id=${personid}`)
+    }catch(error){
+      console.error('Errore durante la richiesta: ', error);
+    }
+  }

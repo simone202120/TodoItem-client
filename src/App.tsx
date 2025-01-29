@@ -3,6 +3,8 @@ import TodoItems from './components/todoItems/todoItems';
 import Persons from './components/Persons/person';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css'; 
+import AddTodoItemPage from './components/todoItems/addTodoPage';
+import AddPersonPage from './components/Persons/addPersonPage';
 
 const Home : React.FC = () =>{
   return(
@@ -16,7 +18,6 @@ const Home : React.FC = () =>{
           <button>Go to Persons</button>
         </Link>
       </div>
-
     </div>
   );
 }
@@ -29,7 +30,8 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/todo" element={<TodoItems />} />
           <Route path="/persons" element={<Persons />} />
-          {/* <Route path="/addTodo" element={<addTodo />} /> */}
+          <Route path="/todo/AddTodoItemPage" element={<AddTodoItemPage />} /> 
+          <Route path="/todo/AddPersonPage" element={<AddPersonPage />} /> 
         </Routes>
       </div>
     </Router>

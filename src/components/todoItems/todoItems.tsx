@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllTodoItems } from "../../api";
 import "./todoItems.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { deleteTodoItem } from "../../api";
 
 const TodoItems = () => {
   const [todoItems, setTodoItems] = useState<any[]>([]);
@@ -16,6 +17,15 @@ const TodoItems = () => {
     }
   };
 
+  const deleteTodoItems = async (itemId:number) =>{
+    try{
+      await deleteTodoItem(itemId);
+      alert("item eliminato con successo");
+    }catch(error){
+      console.error("Errorre durante l'eliminazione dell'item", error);
+    }
+  }
+
   //Richiamo la funzione fetchTodoItems al caricamento del componente
   useEffect(() => {
     fetchTodoItems();
@@ -24,10 +34,11 @@ const TodoItems = () => {
 
   return (
     <div className="todoContainer">
-      <div className="ButtonContainer">
-      <Link to="addTodo">
-      <button className="add-button">Aggiungi Todo</button>
+      <div className="ButtonContainer"> <h3 className="Title">TodoList</h3><div/>
+      <Link className="linkBox" to="/todo/AddTodoItemPage">
+      <button className="add-button">+</button>
       </Link>
+      <Link className="linkBox" to="/"><button className="add-button">Home</button></Link>
       </div>
       <ul className="todo-list">
         {todoItems.map((item) => (
@@ -47,6 +58,9 @@ const TodoItems = () => {
             <p className={item.isComplete ? "completed" : "not-completed"}>
               Completato: {item.isComplete ? "✅" : "❌"}
             </p>
+            <div className="deleteContainer">
+            <button className="delete" onClick={() => deleteTodoItems(item.id)}>🗑️</button>
+            </div>
           </li>
         ))}
       </ul>

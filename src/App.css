@@ -1,9 +1,9 @@
 /* App.css */
 .container {
   display: flex; 
-  justify-content: space-between; /* Distribuisce lo spazio tra i due componenti */
   gap: 20px; /* Aggiunge uno spazio tra i due componenti */
   padding: 20px; /* Aggiunge un po' di padding */
+  justify-content: center;
 }
 
 .Items, .Persons {
@@ -26,8 +26,8 @@
 }
 
 .buttons button {
-  background: linear-gradient(135deg, #4A90E2, #007AFF);
-  color: white;
+  background: linear-gradient(135deg, #e2be4a, #ffd000);
+  color: rgb(161, 90, 7);
   font-size: 16px;
   font-weight: bold;
   text-align: center;
@@ -42,8 +42,12 @@
   margin: 2%;
 }
 
+.linkBox{
+  margin-right: 2%;
+}
+
 .buttons button:hover{
-  background: linear-gradient(135deg, #007AFF, #005BBB);
+  background: linear-gradient(135deg, #e2be4a, #ffd000);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
