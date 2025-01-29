@@ -23,6 +23,7 @@ const AddPersons: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
         try {
             await createPerson(newPerson); 
             alert("Persona creata con successo!");
+            onAdd();
         } catch (error) {
             console.error("Errore durante la creazione della persona:", error);
             alert("Si è verificato un errore durante la creazione della persona.");

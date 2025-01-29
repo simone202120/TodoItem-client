@@ -39,15 +39,6 @@
     color: #e67e22;
   }
   
-  .todo-item .completed {
-    font-weight: bold;
-    color: #2ecc71;
-  }
-  
-  .todo-item .not-completed {
-    font-weight: bold;
-    color: #e74c3c;
-  }
   .add-todo-form {
     margin-bottom: 20px;
     padding: 20px;
@@ -159,4 +150,26 @@
     background: linear-gradient(135deg, #ac0b0b, #bd1818);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
   transform: scale(1.1);
+}
+
+.update{
+  background: linear-gradient(135deg, #c07503, #e9820d);
+color: rgb(255, 255, 255);
+font-size: 14px;
+font-weight: bold;
+text-align: center;
+padding: 12px 12px;
+border: none;
+border-radius: 38px;
+cursor: pointer;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+font-family: 'Poppins', sans-serif;
+justify-content: center;
+margin-right: 5px;
+}
+
+.update:hover{
+  background: linear-gradient(135deg, #c07503, #e9820d);
+box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+transform: scale(1.1);
 }

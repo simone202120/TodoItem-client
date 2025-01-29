@@ -21,6 +21,7 @@ const TodoItems = () => {
     try{
       await deleteTodoItem(itemId);
       alert("item eliminato con successo");
+      await fetchTodoItems()
     }catch(error){
       console.error("Errorre durante l'eliminazione dell'item", error);
     }
@@ -55,10 +56,11 @@ const TodoItems = () => {
             <p className="person">
               Assegnato: {item.personId ? "Si" : "No"}
             </p>
-            <p className={item.isComplete ? "completed" : "not-completed"}>
-              Completato: {item.isComplete ? "✅" : "❌"}
+            <p>
+              Completato: {item.isComplete ? "🟢" : "🔴"}
             </p>
             <div className="deleteContainer">
+            <button className="update" onClick={() => deleteTodoItems(item.id)}>🔧</button>
             <button className="delete" onClick={() => deleteTodoItems(item.id)}>🗑️</button>
             </div>
           </li>

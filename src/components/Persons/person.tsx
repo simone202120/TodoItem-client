@@ -20,6 +20,7 @@ const Persons = () => {
   const deletePerson = async(personId:number) =>{
     try{
       await deletePersons(personId);
+      await fetchPersons();
       alert("Persona eliminata con successo");
     }catch(error){
       console.error("Errore durante l'eliminazione");
@@ -52,6 +53,7 @@ const Persons = () => {
               <FaIdCard /> TIN: {person.tin}
             </p>
             <div className="deleteContainer">
+            <button className="update" onClick={() => deletePerson(person.id)}>🔧</button>
             <button className="delete" onClick={()=>deletePerson(person.id)}>🗑️</button>
             </div>
           </li>
