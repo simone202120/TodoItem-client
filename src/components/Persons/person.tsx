@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./person.css"; 
 import { deletePersons, getAllPerson } from "../../api";
 import { FaUser, FaBirthdayCake, FaIdCard } from "react-icons/fa"; 
-import AddPersons from "./addPersonsForm"
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 const Persons = () => {

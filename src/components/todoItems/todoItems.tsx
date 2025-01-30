@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getAllTodoItems } from "../../api";
+import { getAllTodoItems, ITodoItemDto } from "../../api";
 import "./todoItems.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { deleteTodoItem } from "../../api";
+import { deleteTodoItem, updateTodoItem } from "../../api";
 
 const TodoItems = () => {
-  const [todoItems, setTodoItems] = useState<any[]>([]);
+  const [todoItems, setTodoItems] = useState<ITodoItemDto[]>([]);
 
   //Richiamo il la GetAll e aggiorno lo state di todoItems con i dati ricevuti
   const fetchTodoItems = async () => {
@@ -27,7 +27,7 @@ const TodoItems = () => {
     }
   }
 
-  //Richiamo la funzione fetchTodoItems al caricamento del componente
+  //Richiamo la funzione fetchTodoItems quando careico il componente
   useEffect(() => {
     fetchTodoItems();
   }, []);
@@ -60,7 +60,7 @@ const TodoItems = () => {
               Completato: {item.isComplete ? "🟢" : "🔴"}
             </p>
             <div className="deleteContainer">
-            <button className="update" onClick={() => deleteTodoItems(item.id)}>🔧</button>
+            <button className="update" onClick={() => updateTodoItem (item.id)}>🔧</button>
             <button className="delete" onClick={() => deleteTodoItems(item.id)}>🗑️</button>
             </div>
           </li>

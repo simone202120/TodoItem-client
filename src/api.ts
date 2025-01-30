@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Console } from 'console';
 const API_BASE_URL = 'https://localhost:44311';
 
 //Istanza Axios
@@ -11,7 +10,41 @@ const api = axios.create({
     },
 });
 
-export const getAllTodoItems = async () => {
+export interface ITodoItemDto {
+  id: number;
+  title: string;
+  description: string;
+  startDate: string;
+  endDate:string;
+  weight: number;
+  personId?: boolean;
+  isComplete?: boolean;
+}
+
+export interface ICreateTodoItemInput {
+  title: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  weight: number
+}
+
+export interface ICreatePersonInput{
+  name: string;
+  surname: string;
+  birthDate: string;
+  tin: string;
+  cityCode: string;
+}
+
+export interface IPersonDto{
+  name: string;
+  surname: string;
+  birthDate: string;
+  tin: string;
+}
+
+export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise equivalente al Task di C#
     try {
       const response = await api.get('/api/services/app/TodoItem/GetAll');
   
@@ -26,7 +59,7 @@ export const getAllTodoItems = async () => {
     }
   };
 
-  export const getAllPerson = async () => {
+  export const getAllPerson = async () : Promise<IPersonDto[]>=> {
     try {
       const response = await api.get('/api/services/app/Person/GetAll');
   
@@ -41,7 +74,7 @@ export const getAllTodoItems = async () => {
     }
   }
 
-  export const createTodoItem = async (todoItem:any) => {
+  export const createTodoItem = async (todoItem:ICreateTodoItemInput) => {
     try {
       const response = await api.post('/api/services/app/TodoItem/Create', todoItem);
       if (response.data.success) {
@@ -55,7 +88,7 @@ export const getAllTodoItems = async () => {
     }
   }
 
-  export const createPerson = async (person:any) => {
+  export const createPerson = async (person:ICreatePersonInput) => {
     try {
       const response = await api.post('/api/services/app/Person/Create', person);
   
@@ -72,15 +105,23 @@ export const getAllTodoItems = async () => {
 
   export const deleteTodoItem = async (itemid:number) =>{
     try{
-      const response = await api.delete(`/api/services/app/TodoItem/Delete?id=${itemid}`)
+       await api.delete(`/api/services/app/TodoItem/Delete?id=${itemid}`)
     }catch(error){
       console.error('Errore durante la richiesta: ',error );
     }
   }
   export const deletePersons = async (personid:number) =>{
     try{
-      const response = await api.delete(`/api/services/app/Person/Delete?id=${personid}`)
+       await api.delete(`/api/services/app/Person/Delete?id=${personid}`)
     }catch(error){
       console.error('Errore durante la richiesta: ', error);
+    }
+  }
+
+  export const updateTodoItem = async (person:any) =>{
+    try{
+        const response = await api.post('/api/services/app/TodoItem/Update')
+    }catch(error){
+      console.error('Errore durante l\'aggiornamento dell\'item', error)
     }
   }

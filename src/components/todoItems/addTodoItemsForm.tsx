@@ -1,5 +1,5 @@
 import React from "react";
-import {createTodoItem} from "../../api";
+import {createTodoItem, ICreateTodoItemInput} from "../../api";
 import { useState } from "react";
 import "./todoItems.css";
 
@@ -15,7 +15,7 @@ const AddTodoItem: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newTodoItem = {
+    const newTodoItem: ICreateTodoItemInput = {
       title,
       description,
       startDate: new Date(startDate).toISOString(),

@@ -1,5 +1,5 @@
 import React from "react";
-import {createPerson} from "../../api";
+import {createPerson, ICreatePersonInput} from "../../api";
 import { useState } from "react";
 import './person.css';
 
@@ -13,7 +13,7 @@ const AddPersons: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const newPerson = {
+        const newPerson:ICreatePersonInput = {
             name,
             surname,
             birthDate: new Date(birthDate).toISOString().split("T")[0],

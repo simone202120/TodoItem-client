@@ -1,10 +1,10 @@
 import React from 'react';
 import TodoItems from './components/todoItems/todoItems';
-import Persons from './components/Persons/person';
+import Persons from './components/persons/person';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css'; 
 import AddTodoItemPage from './components/todoItems/addTodoPage';
-import AddPersonPage from './components/Persons/addPersonPage';
+import AddPersonPage from './components/persons/addPersonPage';
 
 const Home : React.FC = () =>{
   return(

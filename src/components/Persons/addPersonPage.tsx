@@ -1,6 +1,5 @@
-import React from 'react';
-import AddPersons from './addPersonsForm';  
 import { useNavigate } from 'react-router-dom';
+import AddPersons from './addPersonsForm';
 
 const AddPersonPage = () => {
     const navigate = useNavigate();
