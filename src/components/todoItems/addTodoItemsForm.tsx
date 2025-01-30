@@ -26,9 +26,9 @@ const AddTodoItem: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
       await createTodoItem(newTodoItem); 
       alert("TodoItem creato con successo!");
       onAdd();
-    } catch (error) {
+    } catch (error:any) {
       console.error("Errore durante la creazione del TodoItem:", error);
-      alert("Si è verificato un errore durante la creazione del TodoItem.");
+      alert(error.response.data.error.details);
     }
   };
 

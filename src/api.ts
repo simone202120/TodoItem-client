@@ -44,7 +44,18 @@ export interface IPersonDto{
   tin: string;
 }
 
-export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise equivalente al Task di C#
+export interface IupdateTodoItemInput{
+  id:number;
+  title: string;
+  description: string;
+  startDate: string;
+  EndDate : string;
+  weight:number;
+  personId:number;
+  isComplete:boolean;
+}
+
+export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise equivalente al Task in C#
     try {
       const response = await api.get('/api/services/app/TodoItem/GetAll');
   
@@ -80,7 +91,7 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
       if (response.data.success) {
         return response.data.result;
       } else {
-        throw new Error(response.data.error || 'Error: ');
+        throw new Error(response.data.error.details || 'Error: ');
       }
     } catch (error) {
       console.error('Errore durante la richiesta:', error);
@@ -95,7 +106,7 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
       if (response.data.success) {
         return response.data.result;
       } else {
-        throw new Error(response.data.error || 'Error: ');
+        throw new Error(response.data.error.details || 'Error: ');
       }
     } catch (error) {
       console.error('Errore durante la richiesta:', error);
@@ -118,9 +129,14 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
     }
   }
 
-  export const updateTodoItem = async (person:any) =>{
+  export const updateTodoItem = async (person:IupdateTodoItemInput) =>{
     try{
-        const response = await api.post('/api/services/app/TodoItem/Update')
+      const response = await api.post('/api/services/app/TodoItem/GetAll');
+      if (response.data.success) {
+        return response.data.result;
+      } else {
+        throw new Error(response.data.error.details || 'Error: ');
+      }
     }catch(error){
       console.error('Errore durante l\'aggiornamento dell\'item', error)
     }

@@ -21,12 +21,12 @@ const AddPersons: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
             cityCode
         };
         try {
-            await createPerson(newPerson); 
+           await createPerson(newPerson); 
             alert("Persona creata con successo!");
             onAdd();
-        } catch (error) {
-            console.error("Errore durante la creazione della persona:", error);
-            alert("Si è verificato un errore durante la creazione della persona.");
+        } catch (error:any) {
+            console.error("Errore durante la creazione della persona:", error.details);
+            alert(error.response.data.error.details); 
         }
     };
 

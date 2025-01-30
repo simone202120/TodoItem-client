@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getAllTodoItems, ITodoItemDto } from "../../api";
+import { getAllTodoItems, ITodoItemDto, IupdateTodoItemInput } from "../../api";
 import "./todoItems.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { deleteTodoItem, updateTodoItem } from "../../api";
+import { deleteTodoItem } from "../../api";
 
 const TodoItems = () => {
   const [todoItems, setTodoItems] = useState<ITodoItemDto[]>([]);
@@ -60,7 +60,9 @@ const TodoItems = () => {
               Completato: {item.isComplete ? "🟢" : "🔴"}
             </p>
             <div className="deleteContainer">
-            <button className="update" onClick={() => updateTodoItem (item.id)}>🔧</button>
+              <Link to="/todo/UpdateTodoItemPage" state={{item}}>
+              <button className="update">🔧</button>
+              </Link>
             <button className="delete" onClick={() => deleteTodoItems(item.id)}>🗑️</button>
             </div>
           </li>
