@@ -129,9 +129,9 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
     }
   }
 
-  export const updateTodoItem = async (person:IupdateTodoItemInput) =>{
+  export const updateTodoItem = async (item:IupdateTodoItemInput) =>{
     try{
-      const response = await api.post('/api/services/app/TodoItem/GetAll');
+      const response = await api.post('/api/services/app/TodoItem/Update', item);
       if (response.data.success) {
         return response.data.result;
       } else {

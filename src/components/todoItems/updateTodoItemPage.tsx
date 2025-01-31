@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate, useLocation  } from 'react-router-dom';
 import UpdateTodoItems from './updateTodoItemForm';
 
-const updateTodoItemPage = () =>{
+const UpdateTodoItemPage = () =>{
     const navigate = useNavigate();
 
     const handleUpdate = () =>{
@@ -11,8 +11,8 @@ const updateTodoItemPage = () =>{
 
     return(
         <div>
-             <UpdateTodoItems onUpdate={handleUpdate}/> 
+            <UpdateTodoItems onUpdate={handleUpdate}/> 
         </div>
     )
 };
- export default updateTodoItemPage;
+ export default UpdateTodoItemPage;
