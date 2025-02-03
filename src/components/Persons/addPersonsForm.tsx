@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createPerson, ICreatePersonInput } from "../../api";
-import "./person.css"; // Assicurati che il file CSS aggiornato sia incluso
+import "./person.css";
 
 const AddPersons: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
     const [name, setName] = useState("");
