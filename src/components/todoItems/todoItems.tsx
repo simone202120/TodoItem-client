@@ -18,6 +18,8 @@ const TodoItems = () => {
   };
 
   const deleteTodoItems = async (itemId:number) =>{
+    const isConfirmed = window.confirm("Sei sicuro di voler eliminare definitivamente questo Todo?");
+    if (!isConfirmed) return; // Se l'utente annulla esci 
     try{
       await deleteTodoItem(itemId);
       alert("item eliminato con successo");
@@ -31,6 +33,7 @@ const TodoItems = () => {
   useEffect(() => {
     fetchTodoItems();
   }, []);
+
 
 
   return (
@@ -60,8 +63,8 @@ const TodoItems = () => {
               Completato: {item.isComplete ? "🟢" : "🔴"}
             </p>
             <div className="deleteContainer">
-              <Link to="/todo/UpdateTodoItemPage" state={{item}}>
-              <button className="update">🔧</button>
+              <Link to="/todo/UpdateTodoItemPage" state={{ todoItem: item }}>
+              <button className="update" >🔧</button>
               </Link>
             <button className="delete" onClick={() => deleteTodoItems(item.id)}>🗑️</button>
             </div>

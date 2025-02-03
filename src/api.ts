@@ -17,7 +17,7 @@ export interface ITodoItemDto {
   startDate: string;
   endDate:string;
   weight: number;
-  personId?: boolean;
+  personId?: number;
   isComplete?: boolean;
 }
 
@@ -42,6 +42,7 @@ export interface IPersonDto{
   surname: string;
   birthDate: string;
   tin: string;
+  id : number;
 }
 
 export interface IupdateTodoItemInput{
@@ -49,9 +50,9 @@ export interface IupdateTodoItemInput{
   title: string;
   description: string;
   startDate: string;
-  EndDate : string;
+  endDate : string;
   weight:number;
-  personId:number;
+  personId?:number | null;
   isComplete:boolean;
 }
 
@@ -89,6 +90,7 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
     try {
       const response = await api.post('/api/services/app/TodoItem/Create', todoItem);
       if (response.data.success) {
+        console.log(todoItem);
         return response.data.result;
       } else {
         throw new Error(response.data.error.details || 'Error: ');
@@ -131,7 +133,7 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
 
   export const updateTodoItem = async (item:IupdateTodoItemInput) =>{
     try{
-      const response = await api.post('/api/services/app/TodoItem/Update', item);
+      const response = await api.put('/api/services/app/TodoItem/Update', item);
       if (response.data.success) {
         return response.data.result;
       } else {

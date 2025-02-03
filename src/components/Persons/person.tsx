@@ -17,6 +17,8 @@ const Persons = () => {
   }
 
   const deletePerson = async(personId:number) =>{
+    const isConfirmed = window.confirm("Sei sicuro di voler eliminare definitivamente questa Persona?");
+    if (!isConfirmed) return; // Se l'utente annulla esci 
     try{
       await deletePersons(personId);
       await fetchPersons();
@@ -31,9 +33,9 @@ const Persons = () => {
   }, []);
 
   return (
-    <div>
+    <div className="todoContainer">
     <div className="ButtonContainer"> <h3 className="Title">Persons</h3><div/>
-      <Link className="linkBox" to="/todo/AddPersonPage">
+      <Link className="linkBox" to="/person/AddPersonPage">
       <button className="add-button">+</button>
       </Link>
       <Link className="linkBox" to="/"><button className="add-button">Home</button></Link>

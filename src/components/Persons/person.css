@@ -1,11 +1,12 @@
 /* person.css */
 .person-list {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-    display: flex;
-  }
-  
+  list-style: none;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+}
   .person-item {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -20,6 +21,7 @@
   .person-item h3 {
     margin: 0 0 8px;
     color: #333;
+    text-align: center;
   }
   
   .person-item p {

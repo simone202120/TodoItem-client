@@ -4,8 +4,8 @@ import Persons from './components/persons/person';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css'; 
 import AddTodoItemPage from './components/todoItems/addTodoPage';
-import AddPersonPage from './components/persons/addPersonPage';
-import UpdateTodoItem from './components/todoItems/updateTodoItemPage';
+import AddPersonPage from './components/persons/addPersonPage'
+import UpdateTodoItemPage from './components/todoItems/UpdateTodoItemPage';
 
 const Home : React.FC = () =>{
   return(
@@ -32,8 +32,8 @@ const App: React.FC = () => {
           <Route path="/todo" element={<TodoItems />} />
           <Route path="/persons" element={<Persons />} />
           <Route path="/todo/AddTodoItemPage" element={<AddTodoItemPage />} /> 
+          <Route path="/todo/UpdateTodoItemPage" element={<UpdateTodoItemPage />} /> 
           <Route path="/person/AddPersonPage" element={<AddPersonPage />} /> 
-          <Route path="/todo/UpdateTodoItemPage" element={<UpdateTodoItem />} />
         </Routes>
       </div>
     </Router>
