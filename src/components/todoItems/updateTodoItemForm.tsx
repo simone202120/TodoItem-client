@@ -83,8 +83,8 @@ const UpdateTodoItemForm: React.FC<{ todoItem: ITodoItemDto; onUpdate: () => voi
         <input type="number" value={weight} onChange={(e) => setWeight(Number(e.target.value))} min="1" max="10" required />
 
         <label>
-          <input type="checkbox" checked={isComplete} onChange={(e) => setIsComplete(e.target.checked)} />
-          Completato
+        Completato
+        <input  type="checkbox" checked={isComplete} onChange={(e) => setIsComplete(e.target.checked)} />
         </label>
 
         <label>Assegna a una persona</label>

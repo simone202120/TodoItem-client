@@ -1,56 +1,59 @@
-/* App.css */
-.container {
-  display: flex; 
-  gap: 20px; /* Aggiunge uno spazio tra i due componenti */
-  padding: 20px; /* Aggiunge un po' di padding */
+/* Stile generale */
+.home-container {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
 }
 
-.Items, .Persons {
-  /*flex: 1;  Fa sì che entrambi i componenti occupino lo stesso spazio */
-  background-color: #f9f9f9; /* Colore di sfondo */
-  border: 1px solid #ddd; /* Bordo */
-  border-radius: 8px; /* Bordi arrotondati */
-  padding: 16px; /* Spaziatura interna */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra */
-}
-
-.home {
+/* Card centrale */
+.home-card {
+  background: #f3ecc6;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
-  margin-top: 50px;
-  width: 100%;
+  max-width: 400px;
+  width: 90%;
 }
 
+.home-card h1 {
+  font-size: 28px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.home-card p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Contenitore dei pulsanti */
 .buttons {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .buttons button {
-  background: linear-gradient(135deg, #e2be4a, #ffd000);
-  color: rgb(161, 90, 7);
+  background: linear-gradient(135deg, #0056b3, #0084ff);
+  color: #fff;
   font-size: 16px;
   font-weight: bold;
-  text-align: center;
   padding: 12px 24px;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   font-family: 'Poppins', sans-serif;
-  justify-content: center;
-  margin: 2%;
 }
 
-.linkBox{
-  margin-right: 2%;
-}
-
-.buttons button:hover{
-  background: linear-gradient(135deg, #e2be4a, #ffd000);
+.buttons button:hover {
+  background: linear-gradient(135deg, #004494, #006be6);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-.container {
-  padding: 20px;
+  transform: scale(1.05);
 }

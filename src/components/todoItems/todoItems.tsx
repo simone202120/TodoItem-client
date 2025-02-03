@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getAllTodoItems, ITodoItemDto, IupdateTodoItemInput } from "../../api";
+import { getAllTodoItems, ITodoItemDto } from "../../api";
 import "./todoItems.css";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { deleteTodoItem } from "../../api";
 
 const TodoItems = () => {
   const [todoItems, setTodoItems] = useState<ITodoItemDto[]>([]);
 
-  //Richiamo il la GetAll e aggiorno lo state di todoItems con i dati ricevuti
   const fetchTodoItems = async () => {
     try {
       const data = await getAllTodoItems();
@@ -17,60 +16,54 @@ const TodoItems = () => {
     }
   };
 
-  const deleteTodoItems = async (itemId:number) =>{
+  const deleteTodoItems = async (itemId: number) => {
     const isConfirmed = window.confirm("Sei sicuro di voler eliminare definitivamente questo Todo?");
-    if (!isConfirmed) return; // Se l'utente annulla esci 
-    try{
+    if (!isConfirmed) return;
+    try {
       await deleteTodoItem(itemId);
-      alert("item eliminato con successo");
-      await fetchTodoItems()
-    }catch(error){
-      console.error("Errorre durante l'eliminazione dell'item", error);
+      alert("Item eliminato con successo");
+      await fetchTodoItems();
+    } catch (error) {
+      console.error("Errore durante l'eliminazione dell'item", error);
     }
-  }
+  };
 
-  //Richiamo la funzione fetchTodoItems quando careico il componente
   useEffect(() => {
     fetchTodoItems();
   }, []);
 
-
-
   return (
-    <div className="todoContainer">
-      <div className="ButtonContainer"> <h3 className="Title">TodoList</h3><div/>
-      <Link className="linkBox" to="/todo/AddTodoItemPage">
-      <button className="add-button">+</button>
-      </Link>
-      <Link className="linkBox" to="/"><button className="add-button">Home</button></Link>
+    <div className="todo-page-container">
+      <div className="todo-header">
+        <h1>Gestione TodoList</h1>
+        <div className="buttons-container">
+          <Link to="/todo/AddTodoItemPage">
+            <button className="add-button">+ Aggiungi Todo</button>
+          </Link>
+          <Link to="/">
+            <button className="home-button">🏠 Home</button>
+          </Link>
+        </div>
       </div>
-      <ul className="todo-list">
+      <div className="todo-list-container">
         {todoItems.map((item) => (
-          <li key={item.id} className="todo-item">
+          <div key={item.id} className="todo-card">
             <h3>{item.title}</h3>
-            <p>Descrizione: {item.description}</p>
-            <p className="date">
-              Inizio: {new Date(item.startDate).toLocaleDateString()}
-            </p>
-            <p className="date">
-              Fine: {new Date(item.endDate).toLocaleDateString()}
-            </p>
-            <p className="priority">Priorità: {item.weight}</p>
-            <p className="person">
-              Assegnato: {item.personId ? "Si" : "No"}
-            </p>
-            <p>
-              Completato: {item.isComplete ? "🟢" : "🔴"}
-            </p>
-            <div className="deleteContainer">
+            <p className="description">{item.description}</p>
+            <p className="date">📅 Inizio: {new Date(item.startDate).toLocaleDateString()}</p>
+            <p className="date">⏳ Fine: {new Date(item.endDate).toLocaleDateString()}</p>
+            <p className="priority">🔥 Priorità: {item.weight}</p>
+            <p className="person">👤 Assegnato: {item.personId ? "Si" : "No"}</p>
+            <p className="status">{item.isComplete ? "✅ Completato" : "❌ Non completato"}</p>
+            <div className="todo-actions">
               <Link to="/todo/UpdateTodoItemPage" state={{ todoItem: item }}>
-              <button className="update" >🔧</button>
+                <button className="update">✏️ Modifica</button>
               </Link>
-            <button className="delete" onClick={() => deleteTodoItems(item.id)}>🗑️</button>
+              <button className="delete" onClick={() => deleteTodoItems(item.id)}>🗑️ Elimina</button>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
