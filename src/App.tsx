@@ -6,6 +6,7 @@ import AddTodoItemPage from './components/todoItems/addTodoPage';
 import AddPersonPage from './components/persons/addPersonPage';
 import UpdateTodoItemPage from './components/todoItems/UpdateTodoItemPage';
 import './App.css';
+import UpdatePersonPage from './components/persons/updatePersonPage';
 
 const Home: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ const App: React.FC = () => {
           <Route path="/todo/AddTodoItemPage" element={<AddTodoItemPage />} /> 
           <Route path="/todo/UpdateTodoItemPage" element={<UpdateTodoItemPage />} /> 
           <Route path="/person/AddPersonPage" element={<AddPersonPage />} /> 
+          <Route path="/person/UpdatePersonPage" element={<UpdatePersonPage />} /> 
         </Routes>
       </div>
     </Router>

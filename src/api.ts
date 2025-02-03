@@ -42,6 +42,7 @@ export interface IPersonDto{
   surname: string;
   birthDate: string;
   tin: string;
+  cityCode:string;
   id : number;
 }
 
@@ -54,6 +55,15 @@ export interface IupdateTodoItemInput{
   weight:number;
   personId?:number | null;
   isComplete:boolean;
+}
+
+export interface IUpdatePersonInput{
+  id :number;
+  name :string;
+  surname : string;
+  birthDate:string;
+  tin:string;
+  cityCode:string;
 }
 
 export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise equivalente al Task in C#
@@ -83,6 +93,19 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
     } catch (error) {
       console.error('Errore durante la richiesta:', error);
       throw error; 
+    }
+  }
+
+  export const getPerson = async (personId:Number) =>{
+    try{
+      const response = await api.get(`/api/services/app/Person/Get?Id=${personId}`);
+      if (response.data.success) {
+        return response.data.result;
+      } else {
+        throw new Error(response.data.error.details || 'Error: ');
+      }
+    }catch(error){
+      console.error('Errore durante la richiesta: ',error );
     }
   }
 
@@ -141,5 +164,18 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
       }
     }catch(error){
       console.error('Errore durante l\'aggiornamento dell\'item', error)
+    }
+  }
+
+  export const updatePerson = async (person:IUpdatePersonInput) =>{
+    try{
+      const response = await api.put('/api/services/app/Person/Update', person);
+      if (response.data.success) {
+        return response.data.result;
+      } else {
+        throw new Error(response.data.error.details || 'Error: ');
+      }
+    }catch(error){
+      console.error('Errore durante l\'aggiornamento della Person', error)
     }
   }

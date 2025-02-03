@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./person.css"; 
 import { deletePersons, getAllPerson } from "../../api";
-import { FaUser, FaBirthdayCake, FaIdCard } from "react-icons/fa"; 
+
 import { Link } from "react-router-dom";
 
 const Persons = () => {
@@ -48,11 +48,13 @@ const Persons = () => {
       <div className="person-list-container">
         {persons.map((person) => (
           <div key={person.id} className="person-card">
-            <h3><FaUser /> {person.name} {person.surname}</h3>
-            <p className="birth-date"><FaBirthdayCake /> Data di nascita: {new Date(person.birthDate).toLocaleDateString()}</p>
-            <p className="tin"><FaIdCard /> TIN: {person.tin}</p>
+            <h3>👤 {person.name} {person.surname}</h3>
+            <p className="birth-date">📅 Data di nascita: {new Date(person.birthDate).toLocaleDateString()}</p>
+            <p className="tin"> 💳 TIN: {person.tin}</p>
             <div className="person-actions">
-              <button className="update">✏️ Modifica</button>
+              <Link to="/person/UpdatePersonPage" state={{ person: person }}>
+                <button className="update">✏️ Modifica</button>
+              </Link>
               <button className="delete" onClick={() => deletePerson(person.id)}>🗑️ Elimina</button>
             </div>
           </div>

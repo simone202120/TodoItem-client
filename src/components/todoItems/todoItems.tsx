@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { getAllTodoItems, ITodoItemDto } from "../../api";
+import { getAllPerson, getAllTodoItems, getPerson, ITodoItemDto } from "../../api";
 import "./todoItems.css";
 import { Link } from "react-router-dom";
 import { deleteTodoItem } from "../../api";
 
 const TodoItems = () => {
   const [todoItems, setTodoItems] = useState<ITodoItemDto[]>([]);
-
+  const [personName, setPersonName] = useState<{ [key: number]: string }>({});
   const fetchTodoItems = async () => {
     try {
       const data = await getAllTodoItems();
       setTodoItems(data);
+
+      const names: { [key: number]: string } = {};
+      for (const item of data) {
+        if (item.personId) {
+          const personData = await getPerson(item.personId);
+          names[item.id] = `${personData.name} ${personData.surname}`;
+        }
+      }
+      setPersonName(names);
     } catch (error) {
       console.error("Errore durante il caricamento dei TodoItems:", error);
     }
@@ -53,7 +62,7 @@ const TodoItems = () => {
             <p className="date">📅 Inizio: {new Date(item.startDate).toLocaleDateString()}</p>
             <p className="date">⏳ Fine: {new Date(item.endDate).toLocaleDateString()}</p>
             <p className="priority">🔥 Priorità: {item.weight}</p>
-            <p className="person">👤 Assegnato: {item.personId ? "Si" : "No"}</p>
+            <p className="person">👤 Assegnato: {item.personId ? personName[item.id] : "No"}</p>
             <p className="status">{item.isComplete ? "✅ Completato" : "❌ Non completato"}</p>
             <div className="todo-actions">
               <Link to="/todo/UpdateTodoItemPage" state={{ todoItem: item }}>
