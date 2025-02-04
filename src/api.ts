@@ -66,6 +66,23 @@ export interface IUpdatePersonInput{
   cityCode:string;
 }
 
+export interface ISprintDto{
+  id:number;
+  title:string;
+  description: string;
+  startDate:string;
+  endDate:string;
+  isComplete:boolean;
+}
+
+export interface ICreateSprintInput{
+  title:string;
+  description: string;
+  startDate:string;
+  endDate:string;
+  isComplete:boolean;
+}
+
 export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise equivalente al Task in C#
     try {
       const response = await api.get('/api/services/app/TodoItem/GetAll');
@@ -177,5 +194,34 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
       }
     }catch(error){
       console.error('Errore durante l\'aggiornamento della Person', error)
+    }
+  }
+
+  export const getAllSprints = async (): Promise<ISprintDto[]>  =>{
+    try{
+      const response = await api.get('/api/services/app/Sprint/GetAll');
+      if (response.data.success) {
+        return response.data.result.items;
+      } else {
+        throw new Error(response.data.error || 'Error: ');
+      }
+    }catch(error){
+      console.error('Errore durante il caricamento degli Sprint', error)
+      throw error; 
+    }
+  }
+
+  export const createSprint = async (sprint: ICreateSprintInput) => {
+    try {
+      const response = await api.post('/api/services/app/Sprint/Create', sprint);
+  
+      if (response.data.success) {
+        return response.data.result;
+      } else {
+        throw new Error(response.data.error.details || 'Error: ');
+      }
+    } catch (error) {
+      console.error('Errore durante la richiesta:', error);
+      throw error; 
     }
   }

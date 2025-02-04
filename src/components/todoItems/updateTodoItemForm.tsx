@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { updateTodoItem, ITodoItemDto, getAllPerson, IPersonDto } from "../../api";
 import "./todoItems.css";
+import { useNavigate } from "react-router-dom";
 
 const UpdateTodoItemForm: React.FC<{ todoItem: ITodoItemDto; onUpdate: () => void }> = ({ todoItem, onUpdate }) => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState(todoItem.title);
   const [description, setDescription] = useState(todoItem.description);
   const [startDate, setStartDate] = useState(todoItem.startDate.split("T")[0]);
@@ -96,8 +98,8 @@ const UpdateTodoItemForm: React.FC<{ todoItem: ITodoItemDto; onUpdate: () => voi
             </option>
           ))}
         </select>
-
         <button type="submit" className="btn-submit">Aggiorna</button>
+        <button type="button" className="btn-back" onClick={() => navigate(-1)}>Annulla</button>
       </form>
     </div>
   );

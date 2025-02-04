@@ -7,19 +7,23 @@ import AddPersonPage from './components/persons/addPersonPage';
 import UpdateTodoItemPage from './components/todoItems/UpdateTodoItemPage';
 import './App.css';
 import UpdatePersonPage from './components/persons/updatePersonPage';
+import Sprint from './components/sprints/sprint';
+import AddSprintPage from './components/sprints/addSprintPage';
 
 const Home: React.FC = () => {
   return (
     <div className='home-container'>
       <div className='home-card'>
         <h1>Task Manager</h1>
-        <p>Gestisci i tuoi TodoItems e le persone assegnate in un'unica piattaforma.</p>
         <div className="buttons">
           <Link to="/todo">
             <button>Gestisci TodoList</button>
           </Link>
           <Link to="/persons">
             <button>Gestisci Persone</button>
+          </Link>
+          <Link to="/sprints">
+            <button>Gestisci Sprint</button>
           </Link>
         </div>
       </div>
@@ -39,6 +43,8 @@ const App: React.FC = () => {
           <Route path="/todo/UpdateTodoItemPage" element={<UpdateTodoItemPage />} /> 
           <Route path="/person/AddPersonPage" element={<AddPersonPage />} /> 
           <Route path="/person/UpdatePersonPage" element={<UpdatePersonPage />} /> 
+          <Route path="/sprints" element= {< Sprint />} /> 
+          <Route path="/sprints/AddSprintPage" element={<AddSprintPage />} /> 
         </Routes>
       </div>
     </Router>

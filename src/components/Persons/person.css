@@ -65,6 +65,10 @@
   width: 280px;
 }
 
+.person-card:hover{
+  transform: scale(1.05);
+}
+
 .person-card h3 {
   font-size: 20px;
   color: #333;
@@ -183,6 +187,23 @@
   transition: all 0.3s;
   margin-top: 20px;
 }
+
+.btn-back {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #a70808;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 20px;
+}
+.btn-back:hover {
+  background: #8f0303;
+}
+
 
 .btn-submit:hover {
   background: #0056b3;

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { createPerson, ICreatePersonInput } from "../../api";
 import "./person.css";
+import { useNavigate } from "react-router-dom";
 
 const AddPersons: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [birthDate, setBirthDate] = useState("");
@@ -55,6 +57,7 @@ const AddPersons: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
                         <input type="text" value={cityCode} onChange={(e) => setCityCode(e.target.value)} required />
                     </div>
                     <button type="submit" className="btn-submit">Crea Persona</button>
+                    <button type="button" className="btn-back" onClick={() => navigate(-1)}>Annulla</button>
                 </form>
             </div>
         </div>

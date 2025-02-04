@@ -1,0 +1,74 @@
+/* Contenitore principale */
+.sprint-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+  .sprint-page-container h1 {
+    color: #fff;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  /* Contenitore della lista di sprint */
+  .sprint-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 900px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /* Card dello sprint */
+  .sprint-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 280px;
+    transition: transform 0.3s ease;
+  }
+  
+  .sprint-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .sprint-card h3 {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .sprint-description {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .sprint-date {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  /* Messaggio di caricamento */
+  .loading-message {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 15px;
+  }
+  

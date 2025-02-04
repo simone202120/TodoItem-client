@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { IPersonDto, updatePerson } from '../../api'
 import './person.css'
+import { useNavigate } from 'react-router-dom';
 
 const UpdatePersonForm : React.FC<{person : IPersonDto; onUpdate:() => void}> = ({person, onUpdate}) =>{
+    const navigate = useNavigate();
     const [name, setName] = useState(person.name);
     const [surname, setSurname] = useState(person.surname);
     const [tin, setTin] = useState(person.tin);
@@ -67,6 +69,7 @@ const UpdatePersonForm : React.FC<{person : IPersonDto; onUpdate:() => void}> = 
                         <input type="text" value={cityCode} onChange={(e) => setCityCode(e.target.value)} required />
                     </div>
                     <button type="submit" className="btn-submit">Aggiorna Persona</button>
+                    <button type="button" className="btn-back" onClick={() => navigate(-1)}>Annulla</button>
                 </form>
             </div>
         </div>

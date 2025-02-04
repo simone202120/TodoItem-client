@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { createTodoItem, ICreateTodoItemInput } from "../../api";
 import "./todoItems.css";
+import { useNavigate } from "react-router-dom";
 
 const AddTodoItem: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
+  const navigate = useNavigate()
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -55,6 +57,7 @@ const AddTodoItem: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
             <input type="number" value={weight} onChange={(e) => setWeight(Number(e.target.value))} min="1" max="10" required />
           </div>
           <button type="submit" className="btn-submit">Crea TodoItem</button>
+          <button type="button" className="btn-back" onClick={() => navigate(-1)}>Annulla</button>
         </form>
       </div>
     </div>
