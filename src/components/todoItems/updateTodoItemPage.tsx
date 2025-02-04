@@ -4,7 +4,7 @@ import UpdateTodoItemForm from './updateTodoItemForm';
 import { ITodoItemDto } from '../../api';
 
 const UpdateTodoItemPage = () => {
-    //START - Passo al link nel button per l'update l'item di riferimento in modod da avere a disposizione i vecchi dati
+    //START - Passo al link nel button per l'update l'item di riferimento in modod da avere a disposizione i vecchi valori
     const location = useLocation();
     const  todoItem: ITodoItemDto = location.state?.todoItem; 
     // END

@@ -4,6 +4,7 @@ import "./todoItems.css";
 import { useNavigate } from "react-router-dom";
 
 const AddTodoItem: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
+  //setto lo stato di partenza per tutte le proprietà
   const navigate = useNavigate()
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -12,7 +13,7 @@ const AddTodoItem: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
   const [weight, setWeight] = useState(1);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); //previene il comportamento di default del form in modo da fare la chiamata api quando viene fatto il submit
 
     const newTodoItem: ICreateTodoItemInput = {
       title,

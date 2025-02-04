@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UpdatePersonForm : React.FC<{person : IPersonDto; onUpdate:() => void}> = ({person, onUpdate}) =>{
     const navigate = useNavigate();
+    //setto gli stati di partenza con i valori dell'item
     const [name, setName] = useState(person.name);
     const [surname, setSurname] = useState(person.surname);
     const [tin, setTin] = useState(person.tin);
@@ -39,14 +40,14 @@ const UpdatePersonForm : React.FC<{person : IPersonDto; onUpdate:() => void}> = 
             onUpdate();
         }catch(error:any){
             console.error("Errore durante l'aggiornamento della persona:", error);
-      alert(error.response?.data?.error?.details || "Errore sconosciuto");
+            alert(error.response?.data?.error?.details || "Errore sconosciuto");
         }
     }
 
     return (
         <div className="person-form-container">
             <div className="person-form">
-                <h2>Aggiungi nuova persona</h2>
+                <h2>Modifica persona</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Nome:</label>

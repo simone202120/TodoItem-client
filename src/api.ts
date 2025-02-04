@@ -83,6 +83,15 @@ export interface ICreateSprintInput{
   isComplete:boolean;
 }
 
+export interface IUpdateSprintInput{
+  id:number;
+  title:string;
+  description: string;
+  startDate:string;
+  endDate:string;
+  isComplete:boolean;
+}
+
 export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise equivalente al Task in C#
     try {
       const response = await api.get('/api/services/app/TodoItem/GetAll');
@@ -184,18 +193,18 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
     }
   }
 
-  export const updatePerson = async (person:IUpdatePersonInput) =>{
-    try{
-      const response = await api.put('/api/services/app/Person/Update', person);
-      if (response.data.success) {
+  export const updatePerson = async (person: IUpdatePersonInput) => {
+    try {
+        const response = await api.put('/api/services/app/Person/Update', person);
+        if (!response.data.success) {
+            throw new Error(response.data.error.details || 'Errore durante l\'aggiornamento della persona');
+        }
         return response.data.result;
-      } else {
-        throw new Error(response.data.error.details || 'Error: ');
-      }
-    }catch(error){
-      console.error('Errore durante l\'aggiornamento della Person', error)
+    } catch (error) {
+        console.error('Errore durante l\'aggiornamento della persona:', error);
+        throw error;
     }
-  }
+};
 
   export const getAllSprints = async (): Promise<ISprintDto[]>  =>{
     try{
@@ -223,5 +232,26 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
     } catch (error) {
       console.error('Errore durante la richiesta:', error);
       throw error; 
+    }
+  }
+
+  export const updateSprint = async (sprint:IUpdateSprintInput) =>{
+    try{
+      const response = await api.put('/api/services/app/Sprint/Update', sprint);
+      if (response.data.success) {
+        return response.data.result;
+      } else {
+        throw new Error(response.data.error.details || 'Error: ');
+      }
+    }catch(error){
+      console.error('Errore durante l\'aggiornamento dello Sprint', error)
+    }
+  }
+
+  export const deleteSprints = async (sprintId: number) =>{
+    try {
+      await api.delete(`/api/services/app/Sprint/Delete?id=${sprintId}`)
+    } catch (error) {
+      console.error('Errore durante la richiesta: ', error);
     }
   }

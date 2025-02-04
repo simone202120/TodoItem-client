@@ -9,6 +9,7 @@ import './App.css';
 import UpdatePersonPage from './components/persons/updatePersonPage';
 import Sprint from './components/sprints/sprint';
 import AddSprintPage from './components/sprints/addSprintPage';
+import UpdateSprintPage from './components/sprints/updateSprintPage';
 
 const Home: React.FC = () => {
   return (
@@ -45,6 +46,7 @@ const App: React.FC = () => {
           <Route path="/person/UpdatePersonPage" element={<UpdatePersonPage />} /> 
           <Route path="/sprints" element= {< Sprint />} /> 
           <Route path="/sprints/AddSprintPage" element={<AddSprintPage />} /> 
+          <Route path="/sprints/UpdateSprintPage" element={<UpdateSprintPage />} /> 
         </Routes>
       </div>
     </Router>

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { getAllPerson, getAllTodoItems, getPerson, ITodoItemDto } from "../../api";
-import "./todoItems.css";
+import { useEffect, useState } from "react";
+import { getAllTodoItems, getPerson, ITodoItemDto } from "../../api";
 import { Link } from "react-router-dom";
 import { deleteTodoItem } from "../../api";
+import "./todoItems.css";
 
 const TodoItems = () => {
   const [todoItems, setTodoItems] = useState<ITodoItemDto[]>([]);
-  const [personName, setPersonName] = useState<{ [key: number]: string }>({});
+  const [personName, setPersonName] = useState<{ [key: number]: string }>({});// uso lo state per la person in modo da recuperare nome e cognome per mostrarlo
   const fetchTodoItems = async () => {
     try {
       const data = await getAllTodoItems();

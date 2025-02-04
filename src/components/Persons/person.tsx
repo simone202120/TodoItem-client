@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./person.css"; 
-import { deletePersons, getAllPerson } from "../../api";
-
+import { deletePersons, getAllPerson, getAllTodoItems } from "../../api";
 import { Link } from "react-router-dom";
 
 const Persons = () => {
@@ -14,9 +13,25 @@ const Persons = () => {
     } catch (error) {
       console.error("Errore durante il caricamento delle persone:", error);
     }
-  };
+  }; 
+
+  //Mi recupero gli item per vedere se la persona che sto eliminando ha degli item assegnati
+  const fetchItems = async () =>{
+    try {
+      const data = await getAllTodoItems();
+      return data;
+    } catch (error) {
+      console.error("Errore durante il caricamento degli items:", error);
+    }
+  }
 
   const deletePerson = async (personId: number) => {
+    const assignedItems =  await fetchItems();
+    const hasAssignedItems = assignedItems?.some(item => item.personId === personId);//cerco gli item che contengono quella personId
+    if (hasAssignedItems) {
+      alert("Non è possibile eliminare questa persona perché ha degli items assegnati");
+      return;
+    }
     const isConfirmed = window.confirm("Sei sicuro di voler eliminare definitivamente questa Persona?");
     if (!isConfirmed) return;
     try {
