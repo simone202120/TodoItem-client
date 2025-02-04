@@ -17,7 +17,7 @@ const UpdatePersonForm : React.FC<{person : IPersonDto; onUpdate:() => void}> = 
         setCityCode(person.cityCode);
         setTin(person.tin)
         setId(person.id);
-    })
+    }, [person])
 
     const handleSubmit = async (e: React.FormEvent) =>{
         e.preventDefault();
