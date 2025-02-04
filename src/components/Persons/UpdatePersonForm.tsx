@@ -25,29 +25,30 @@ const UpdatePersonForm : React.FC<{person : IPersonDto; onUpdate:() => void}> = 
     const handleSubmit = async (e: React.FormEvent) =>{
         e.preventDefault();
 
-        const updatePersonInput = {
+        const updatedPerson = {
             ...person,
             id,
             name,
             surname,
             birthDate,
             cityCode,
+            tin
         };
 
         try{
-            await updatePerson(updatePersonInput);
+            await updatePerson(updatedPerson);
             alert("Persona Aggiornata con successo")
             onUpdate();
         }catch(error:any){
             console.error("Errore durante l'aggiornamento della persona:", error);
             alert(error.response?.data?.error?.details || "Errore sconosciuto");
         }
-    }
+    };
 
     return (
         <div className="person-form-container">
+             <h2>Modifica persona</h2>
             <div className="person-form">
-                <h2>Modifica persona</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Nome:</label>

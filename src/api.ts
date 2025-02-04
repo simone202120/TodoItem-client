@@ -132,6 +132,7 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
       }
     }catch(error){
       console.error('Errore durante la richiesta: ',error );
+      throw error;
     }
   }
 
@@ -165,21 +166,6 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
     }
   }
 
-  export const deleteTodoItem = async (itemid:number) =>{
-    try{
-       await api.delete(`/api/services/app/TodoItem/Delete?id=${itemid}`)
-    }catch(error){
-      console.error('Errore durante la richiesta: ',error );
-    }
-  }
-  export const deletePersons = async (personid:number) =>{
-    try{
-       await api.delete(`/api/services/app/Person/Delete?id=${personid}`)
-    }catch(error){
-      console.error('Errore durante la richiesta: ', error);
-    }
-  }
-
   export const updateTodoItem = async (item:IupdateTodoItemInput) =>{
     try{
       const response = await api.put('/api/services/app/TodoItem/Update', item);
@@ -190,21 +176,45 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
       }
     }catch(error){
       console.error('Errore durante l\'aggiornamento dell\'item', error)
+      throw error;
     }
   }
 
-  export const updatePerson = async (person: IUpdatePersonInput) => {
-    try {
-        const response = await api.put('/api/services/app/Person/Update', person);
-        if (!response.data.success) {
-            throw new Error(response.data.error.details || 'Errore durante l\'aggiornamento della persona');
-        }
+  export const updatePerson = async (person:IUpdatePersonInput) =>{
+    try{
+      const response = await api.put('/api/services/app/Person/Update', person);
+      if (response.data.success) {
         return response.data.result;
-    } catch (error) {
-        console.error('Errore durante l\'aggiornamento della persona:', error);
-        throw error;
+      } else {
+        throw new Error(response.data.error.details || 'Error: ');
+      }
+    }catch(error){
+      console.error('Errore durante l\'aggiornamento dell\'item', error)
+      throw error;
     }
-};
+  }
+
+  export const deleteTodoItem = async (itemid:number) =>{
+    try{
+       await api.delete(`/api/services/app/TodoItem/Delete?id=${itemid}`)
+    }catch(error){
+      console.error('Errore durante la richiesta: ',error );
+      throw error;
+    }
+  }
+  export const deletePersons = async (personid:number) =>{
+    try{
+       const response = await api.delete(`/api/services/app/Person/Delete?id=${personid}`)
+       if (response.data.success) {
+        return response.data.result;
+      } else {
+        throw new Error(response.data.error.details || 'Error: ');
+      }
+    }catch(error){
+      console.error('Errore durante la richiesta: ', error);
+      throw error;
+    }
+  }
 
   export const getAllSprints = async (): Promise<ISprintDto[]>  =>{
     try{
@@ -245,6 +255,7 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
       }
     }catch(error){
       console.error('Errore durante l\'aggiornamento dello Sprint', error)
+      throw error;
     }
   }
 
@@ -253,5 +264,6 @@ export const getAllTodoItems = async (): Promise<ITodoItemDto[]> => { //Promise 
       await api.delete(`/api/services/app/Sprint/Delete?id=${sprintId}`)
     } catch (error) {
       console.error('Errore durante la richiesta: ', error);
+      throw error;
     }
   }
