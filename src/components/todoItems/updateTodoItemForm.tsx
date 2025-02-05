@@ -67,8 +67,8 @@ const UpdateTodoItemForm: React.FC<{ todoItem: ITodoItemDto; onUpdate: () => voi
 
   return (
     <div className="todo-form-container">
-      <h2>Aggiorna il TodoItem</h2>
       <form onSubmit={handleSubmit} className="todo-form">
+      <h2>Aggiorna il TodoItem</h2>
         <label>Titolo</label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
 

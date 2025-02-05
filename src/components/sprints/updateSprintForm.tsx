@@ -45,8 +45,8 @@ const UpdateSprint : React.FC<{sprint:ISprintDto; onUpdate : () => void}> = ({sp
     };
     return (
         <div className="todo-form-container">
-          <h2>Aggiorna Sprint</h2>
           <form onSubmit={handleSubmit} className="todo-form">
+          <h2>Aggiorna Sprint</h2>
             <label>Titolo</label>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
     

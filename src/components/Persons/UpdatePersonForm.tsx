@@ -47,9 +47,9 @@ const UpdatePersonForm : React.FC<{person : IPersonDto; onUpdate:() => void}> = 
 
     return (
         <div className="person-form-container">
-             <h2>Modifica persona</h2>
             <div className="person-form">
                 <form onSubmit={handleSubmit}>
+                <h2>Modifica persona</h2>
                     <div className="form-group">
                         <label>Nome:</label>
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />

@@ -34,8 +34,8 @@ const AddPersons: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
     return (
         <div className="person-form-container">
             <div className="person-form">
-                <h2>Aggiungi nuova persona</h2>
                 <form onSubmit={handleSubmit}>
+                <h2>Aggiungi nuova persona</h2>
                     <div className="form-group">
                         <label>Nome:</label>
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />

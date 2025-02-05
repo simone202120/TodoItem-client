@@ -35,8 +35,8 @@ const AddTodoItem: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
   return (
     <div className="todo-form-container">
       <div className="todo-form">
-        <h2>Aggiungi un nuovo TodoItem</h2>
         <form onSubmit={handleSubmit}>
+        <h2>Aggiungi un nuovo TodoItem</h2>
           <div className="form-group">
             <label>Titolo:</label>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
