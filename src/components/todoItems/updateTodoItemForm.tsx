@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { updateTodoItem, ITodoItemDto, getAllPerson, IPersonDto } from "../../api";
+import { updateTodoItem, ITodoItemDto, getAllPerson, IPersonDto, getAllSprints, ISprintDto } from "../../api";
 import "./todoItems.css";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,9 @@ const UpdateTodoItemForm: React.FC<{ todoItem: ITodoItemDto; onUpdate: () => voi
   const [id, setId] = useState(todoItem.id);
   const [isComplete, setIsComplete] = useState(todoItem.isComplete ?? false);
   const [personId, setPersonId] = useState<number | null>(todoItem.personId ?? null);
+  const [sprintId, setSprintId] = useState<number | null>(todoItem.sprintId?? null);
   const [persons, setPersons] = useState<IPersonDto[]>([]); 
+  const [sprint, setSprint] = useState<ISprintDto[]>([])
 
   // Recupero la lista delle persone 
   useEffect(() => {
@@ -29,6 +31,18 @@ const UpdateTodoItemForm: React.FC<{ todoItem: ITodoItemDto; onUpdate: () => voi
     fetchPersons();
   }, []);
 
+  useEffect(()=>{
+    const fetchSprint = async () =>{
+      try{
+        const data = await getAllSprints();
+        setSprint(data);
+      }catch(error){
+        console.error("Errore nel caricamento delle persone:", error);
+      }
+    };
+    fetchSprint();
+  }, []);
+
   useEffect(() => {
     setTitle(todoItem.title);
     setDescription(todoItem.description);
@@ -36,6 +50,7 @@ const UpdateTodoItemForm: React.FC<{ todoItem: ITodoItemDto; onUpdate: () => voi
     setEndDate(todoItem.endDate.split("T")[0]);
     setWeight(todoItem.weight);
     setPersonId(todoItem.personId ?? null);
+    setSprintId(todoItem.sprintId ?? null);
     setIsComplete(todoItem.isComplete ?? false);
     setId(todoItem.id);
   }, [todoItem]);
@@ -52,6 +67,7 @@ const UpdateTodoItemForm: React.FC<{ todoItem: ITodoItemDto; onUpdate: () => voi
       endDate: new Date(endDate).toISOString(),
       weight: Number(weight),
       personId: personId ? Number(personId) : null,
+      sprintId : sprintId ? Number(sprintId) : null,
       isComplete: Boolean(isComplete),
     };
 
@@ -95,6 +111,16 @@ const UpdateTodoItemForm: React.FC<{ todoItem: ITodoItemDto; onUpdate: () => voi
           {persons.map((person) => (
             <option key={person.id} value={person.id}>
               {person.name} {person.surname}
+            </option>
+          ))}
+        </select>
+
+        <label>Assegna ad uno Sprint</label>
+        <select value={sprintId ?? ""} onChange={(e) => setSprintId(e.target.value ? Number(e.target.value) : null)}>
+          <option value="">Nessuno Sprint Assegnato</option>
+          {sprint.map((sprint) => (
+            <option key={sprint.id} value={sprint.id}>
+              {sprint.title}
             </option>
           ))}
         </select>

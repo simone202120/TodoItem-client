@@ -19,6 +19,7 @@ export interface ITodoItemDto {
   weight: number;
   personId?: number;
   isComplete?: boolean;
+  sprintId?: number | null;
 }
 
 export interface ICreateTodoItemInput {
@@ -55,6 +56,7 @@ export interface IupdateTodoItemInput{
   weight:number;
   personId?:number | null;
   isComplete:boolean;
+  sprintId?: number | null;
 }
 
 export interface IUpdatePersonInput{
